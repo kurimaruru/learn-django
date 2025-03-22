@@ -23,6 +23,7 @@ class PostUpdateView(generic.UpdateView):  # 追加
     form_class = PostCreateForm  # PostCreateFormをほぼそのまま活用できる
 
     def get_success_url(self):
+        # post_detail/{int}/に遷移できるように
         return reverse_lazy("blog:post_detail", kwargs={"pk": self.object.pk})
 
 
