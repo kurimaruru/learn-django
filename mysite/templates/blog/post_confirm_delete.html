@@ -1,5 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
 <form action="" method="POST">
-  <table>
+  <table class="table">
       <tr>
         <th>タイトル</th>
         <td>{{ post.title }}</td>
@@ -17,3 +20,4 @@
   <button type="submit">送信</button>
   {% csrf_token %}
 </form>
+{% endblock %}

@@ -4,11 +4,6 @@ from .forms import PostCreateForm  # forms.py で作ったクラスをimport
 from django.urls import reverse_lazy
 
 
-class IndexView(generic.TemplateView):
-    template_name = "blog/index.html"
-    model = Post  # 一覧表示させたいモデルを呼び出し
-
-
 class PostListView(generic.ListView):  # generic の ListViewクラスを継承
     model = Post  # 一覧表示させたいモデルを呼び出し
 
@@ -26,7 +21,9 @@ class PostDetailView(generic.DetailView):  # 追加
 class PostUpdateView(generic.UpdateView):  # 追加
     model = Post
     form_class = PostCreateForm  # PostCreateFormをほぼそのまま活用できる
-    success_url = reverse_lazy("blog:post_detail")
+
+    def get_success_url(self):
+        return reverse_lazy("blog:post_detail", kwargs={"pk": self.object.pk})
 
 
 class PostDeleteView(generic.DeleteView):  # 追加

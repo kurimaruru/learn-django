@@ -1,4 +1,7 @@
-<table>
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table">
     <tr>
       <th>タイトル</th>
       <td>{{ post.title }}</td>
@@ -13,3 +16,4 @@
       <td>{{ post.date }}</td>
     </tr>
 </table>
+{% endblock %}
